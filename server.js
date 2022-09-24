@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const articleRouter = require('./routes/articles')
 const Article = require('./models/article')
@@ -22,7 +23,7 @@ const port = 5000;
 const start = async () => {
     try {
         // connectDB
-        await connectDB();
+        await connectDB(process.env.MONGO_URI);
         app.listen(port,  console.log(`Server is listening port ${port}...`));
     } catch (error) {
     console.log(error);
@@ -30,3 +31,4 @@ const start = async () => {
 };
  
 start();
+
